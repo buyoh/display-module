@@ -6,4 +6,4 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 # gem "rails"
 gem 'mini_magick'
-gem 'selenium-webdriver'
+gem 'selenium-webdriver', '~> 3.142'
