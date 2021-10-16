@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=400, height=300">
+  <style>
+    html,body{
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="300"></canvas>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvasDom = document.getElementById('canvas');
+      const ctx = canvasDom.getContext('2d');
+      const draw = () => {
+        const date = new Date();
+        const time = date.getHours()*60*60 + date.getMinutes()*60 + date.getSeconds();
+        {
+          ctx.lineWidth = 0;
+          ctx.strokeStyle = '#000';
+          ctx.fillStyle = '#fff';
+          ctx.fillRect(0, 0, 400, 300);
+        }
+
+        {
+          ctx.lineWidth = 10;
+          ctx.strokeStyle = '#000';
+          ctx.fillStyle = '#fff';
+          ctx.beginPath();
+          ctx.arc(200, 150, 120, 0, 2 * Math.PI);
+          ctx.stroke();
+        }
+        
+        {
+          ctx.lineWidth = 7;
+          ctx.strokeStyle = '#000';
+          ctx.fillStyle = '#fff';
+          ctx.beginPath();
+          ctx.moveTo(200, 150);
+          const a = (time / 60 / 60 / 12) * 2 * Math.PI - 0.5 * Math.PI;
+          const r = 60;
+          ctx.lineTo(200+Math.cos(a)*r, 150+Math.sin(a)*r);
+          ctx.closePath();
+          ctx.stroke();
+        }
+
+        {
+          ctx.lineWidth = 7;
+          ctx.strokeStyle = '#000';
+          ctx.fillStyle = '#fff';
+          ctx.beginPath();
+          ctx.moveTo(200, 150);
+          const a = (time / 60 / 60) * 2 * Math.PI - 0.5 * Math.PI;
+          const r = 90;
+          ctx.lineTo(200+Math.cos(a)*r, 150+Math.sin(a)*r);
+          ctx.closePath();
+          ctx.stroke();
+        }
+
+        {
+          ctx.lineWidth = 4;
+          ctx.strokeStyle = '#000';
+          ctx.fillStyle = '#fff';
+          ctx.beginPath();
+          ctx.moveTo(200, 150);
+          const a = (time / 60) * 2 * Math.PI - 0.5 * Math.PI;
+          const r = 120;
+          ctx.lineTo(200+Math.cos(a)*r, 150+Math.sin(a)*r);
+          ctx.closePath();
+          ctx.stroke();
+        }
+      };
+      setInterval(() => {
+        draw();
+      }, 250);
+    });
+  </script>
+</body>
+</html>
